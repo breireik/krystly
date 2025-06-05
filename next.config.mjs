@@ -10,6 +10,12 @@ const nextConfig = {
   basePath: '/krystly',
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
 }
 
