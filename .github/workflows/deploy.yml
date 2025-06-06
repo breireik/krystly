@@ -21,24 +21,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        with:
-          version: 8
-          run_install: false
-
+          cache: 'yarn'
+          
+      - name: Install Yarn
+        run: npm install -g yarn
+          
       - name: Install dependencies
-        run: |
-          pnpm install --no-frozen-lockfile
-          pnpm store path
-
+        run: yarn install --frozen-lockfile
+        
       - name: Build with Next.js
-        run: pnpm build
+        run: yarn build
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
