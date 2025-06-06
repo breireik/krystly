@@ -13,6 +13,12 @@ interface BathroomPropertyPageProps {
   }
 }
 
+export async function generateStaticParams() {
+  return bathrooms.map((bathroom) => ({
+    id: bathroom.id.toString(),
+  }))
+}
+
 export default function BathroomPropertyPage({ params }: BathroomPropertyPageProps) {
   const propertyId = Number.parseInt(params.id)
   const property = bathrooms.find((bathroom) => bathroom.id === propertyId)

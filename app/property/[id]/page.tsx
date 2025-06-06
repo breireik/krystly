@@ -13,6 +13,12 @@ interface PropertyPageProps {
   }
 }
 
+export async function generateStaticParams() {
+  return gardens.map((garden) => ({
+    id: garden.id.toString(),
+  }))
+}
+
 export default function PropertyPage({ params }: PropertyPageProps) {
   const propertyId = Number.parseInt(params.id)
   const property = gardens.find((garden) => garden.id === propertyId)
